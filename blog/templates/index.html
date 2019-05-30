@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>여기가 메인입니당</h1>
+    {%if user.is_authenticated %}
+    안녕하세요! {{user.username}}님! <br>
+    마지막 접속일 {{user.last_login}}입니다.
+
+    <a href="{%url 'logout'%}">
+        <p>로그아웃</p>
+    </a>
+
+    {% else %}
+    <a href="{%url 'signup'%}">
+        <p>회원가입</p>
+    </a>
+
+    {% endif %}
+<a href="{%url 'login'%}">
+    <p>로그인</p>
+</a>
+
+    <a href="{%url 'new'%}"><h1>글쓰기</h1></a>
+    {%for i in b_o.all%}
+        <a href="{%url 'detail' i.id%}">{{i.title}}</a><br>
+        {{i.body}}<br>
+        {{i.pub_date}}<br>
+        <a href="{%url 'edit' i.id%}">수정</a>
+        <a href="{%url 'delete' i.id%}">삭제</a>
+        <hr>
+    {%endfor%}
+</html>
