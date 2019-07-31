@@ -33,7 +33,11 @@ urlpatterns = [
     path('accounts/login/', LoginView.as_view(), name="login"),
     path('accounts/logout/', LogoutView.as_view(), name="logout"),
     path('portfolio/', portfolio.views.portfolio, name="portfolio"),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('accounts/profile/', ac_views.profile, name="profile"),
+] 
+
+if settings.DEBUG: 
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 #CBV Class Based View, FBV Function Based View
